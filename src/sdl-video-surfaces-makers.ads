@@ -37,6 +37,20 @@ package SDL.Video.Surfaces.Makers is
 
    --  TODO: This is likely a temporary place for this. It's likely I will add a Streams package.
    --     procedure Create (Self : in out Surface; File_Name : in String);
+
+   procedure Convert (Target : in out Surface;
+                      Source : Surface;
+                      Format : Pixel_Formats.Pixel_Format_Access)
+   with Inline => True;
+   --  Copy an existing surface into a new one that is optimized for blitting
+   --  of a specified pixel format.
+
+   procedure Convert_Format (Target : in out Surface;
+                             Source : Surface;
+                             Format : Pixel_Formats.Pixel_Format_Names)
+   with Inline => True;
+   --  Copy an existing surface to a new surface of the specified format.
+
 private
    function Get_Internal_Surface (Self : in Surface) return Internal_Surface_Pointer with
      Export     => True,
@@ -47,7 +61,5 @@ private
      Export     => True,
      Convention => Ada;
 
-   --  TODO: SDL_ConvertSurface
-   --  TODO: SDL_ConvertSurfaceFormat
    --  TODO: SDL_CreateRGBSurfaceFrom
 end SDL.Video.Surfaces.Makers;

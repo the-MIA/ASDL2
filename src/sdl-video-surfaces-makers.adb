@@ -72,4 +72,48 @@ package body SDL.Video.Surfaces.Makers is
    begin
       return (Ada.Finalization.Controlled with Internal => S, Owns => Owns);
    end Make_Surface_From_Pointer;
+
+   -------------
+   -- Convert --
+   -------------
+
+   procedure Convert
+     (Target : in out Surface;
+      Source : Surface;
+      Format : Pixel_Formats.Pixel_Format_Access)
+   is
+      function SDL_Convert_Surface (Src   : Internal_Surface_Pointer;
+                                    Fmt   : Pixel_Formats.Pixel_Format_Access;
+                                    Flags : Interfaces.Unsigned_32)
+                                   return Internal_Surface_Pointer
+      with
+        Import        => True,
+        Convention    => C,
+        External_Name => "SDL_ConvertSurface";
+   begin
+      Target.Internal := SDL_Convert_Surface (Source.Internal, Format, 0);
+   end Convert;
+
+   --------------------
+   -- Convert_Format --
+   --------------------
+
+   procedure Convert_Format
+     (Target : in out Surface;
+      Source : Surface;
+      Format : Pixel_Formats.Pixel_Format_Names)
+   is
+      function Sdl_Convert_Surface_Format
+        (Src   : Internal_Surface_Pointer;
+         Fmt   : Pixel_Formats.Pixel_Format_Names;
+         Flags : Interfaces.Unsigned_32)
+        return Internal_Surface_Pointer
+      with
+        Import        => True,
+        Convention    => C,
+        External_Name => "SDL_ConvertSurfaceFormat";
+   begin
+      Target.Internal := Sdl_Convert_Surface_Format (Source.Internal, Format, 0);
+   end Convert_Format;
+
 end SDL.Video.Surfaces.Makers;
