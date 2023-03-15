@@ -21,7 +21,7 @@ jobs:
         sudo apt-get install gnat gprbuild
 
     - name: Build Tools
-      run: gprbuild -j0 build/gnat/tools.gpr
+      run: gprbuild -j0 -P build/gnat/tools.gpr
 
     - name: Build
       run: gprbuild -j0 -p
