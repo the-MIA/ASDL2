@@ -2,9 +2,9 @@ name: Ada (GNAT)
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "dev*" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "dev*" ]
 
 jobs:
   build:
@@ -20,5 +20,14 @@ jobs:
         sudo apt-get update &&
         sudo apt-get install gnat gprbuild
 
-    - name: Build
-      run: gprbuild -j0 -p
+    - name: Build Tools
+      run: gprbuild -j0 -p build/gnat/tools.gpr
+      
+    - name: Generate SDL.Events.Keyboards 
+      run: ./build/gnat/gen/debug/tools/gen_keyboard >build/gnat/gen/src/sdl-events-keyboards.ads
+
+    - name: Build SDL2 Main Library
+      run: gprbuild -j0 -p build/gnat/sdlada.gpr
+
+    - name: Build SDL2 Image Library
+      run: gprbuild -j0 -p build/gnat/sdlada_image.gpr
