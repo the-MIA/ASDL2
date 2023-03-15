@@ -24,7 +24,7 @@ jobs:
       run: gprbuild -j0 -p build/gnat/tools.gpr
       
     - name: Run gen_keyboard
-      run: ./build/gnat/Debug/tools/gen_keyboard
+      run: ./build/gnat/debug/tools/gen_keyboard
 
     - name: Build
       run: gprbuild -j0 -p
