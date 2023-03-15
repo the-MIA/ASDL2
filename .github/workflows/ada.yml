@@ -30,4 +30,4 @@ jobs:
       run: gprbuild -j0 -p build/gnat/sdlada.gpr
 
     - name: Build Test
-      run: gprbuild -j0 -p build/gnat/test.gpr
+      run: gprbuild -j0 -p build/gnat/tests.gpr
