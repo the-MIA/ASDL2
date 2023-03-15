@@ -1,0 +1,5 @@
+project Default is
+
+   for Language use ("Ada", "C");
+
+end Default;
