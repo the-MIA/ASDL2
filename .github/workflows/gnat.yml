@@ -1,4 +1,4 @@
-name: Ada (GNAT)
+name: GNAT (Ada)
 
 on:
   push:
@@ -29,5 +29,5 @@ jobs:
     - name: Build SDL2 Main, Image, TTF
       run: gprbuild -j0 -p build/gnat/sdlada.gpr
 
-#    - name: Build Test
-#      run: gprbuild -j0 -p build/gnat/tests.gpr
+    - name: Build Test
+      run: gprbuild -j0 -p build/gnat/tests.gpr
