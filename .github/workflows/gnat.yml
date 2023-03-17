@@ -18,7 +18,7 @@ jobs:
     - name: Set up GNAT toolchain
       run: >
         sudo apt-get update &&
-        sudo apt-get install gnat gprbuild sdl2
+        sudo apt-get install gnat gprbuild libsdl2-dev
 
     - name: Build Tools
       run: gprbuild -j0 -p build/gnat/tools.gpr
