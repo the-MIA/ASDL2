@@ -28,10 +28,10 @@ project Tests is
                                                   "-L/usr/local/lib");
 
          when others =>
-            Linker_Switches := Linker_Switches & ("-lSDL2");  --  ,
+            Linker_Switches := Linker_Switches & ("-lSDL2",
                                          --         "-lSDL2_ttf",
                                          --         "-lSDL2_image",
-                                         --         "-L/usr/local/lib");
+                                                  "-L/usr/local/lib");
             null;
       end case;
 
