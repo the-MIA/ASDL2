@@ -1,4 +1,4 @@
-name: Ada (GNAT)
+name: GNAT (Ada)
 
 on:
   push:
@@ -17,8 +17,11 @@ jobs:
 
     - name: Set up GNAT toolchain
       run: >
-        sudo apt-get update &&
-        sudo apt-get install gnat gprbuild
+        sudo apt-get update                                         &&
+        sudo apt-get install gnat gprbuild                          &&
+        sudo apt-get install libsdl2-2.0-0       libsdl2-dev        &&
+        sudo apt-get install libsdl2-image-2.0-0 libsdl2-image-dev  &&
+        sudo apt-get install libsdl2-ttf-2.0-0   libsdl2-ttf-dev
 
     - name: Build Tools
       run: gprbuild -j0 -p build/gnat/tools.gpr
@@ -29,5 +32,5 @@ jobs:
     - name: Build SDL2 Main, Image, TTF
       run: gprbuild -j0 -p build/gnat/sdlada.gpr
 
-#    - name: Build Test
-#      run: gprbuild -j0 -p build/gnat/tests.gpr
+    - name: Build Test
+      run: gprbuild -j0 -p build/gnat/tests.gpr
